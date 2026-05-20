@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:title" content="生日祝福 · 暴富暴美暴顺利 · 稻香许愿">
+    <meta property="og:description" content="生日快乐！快来许个愿，拆开幸运信封吧~">
+    <title>生日祝福 · 暴富暴美暴顺利 · 稻香许愿</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fdebf7 0%, #f9cedb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', 'Quicksand', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            padding: 16px;
+        }
+
+        /* 主卡片 — 更像生日助手小程序风格，圆润亲肤 */
+        .birthday-box {
+            max-width: 480px;
+            width: 100%;
+            background: #fffef7;
+            border-radius: 64px 64px 56px 56px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 245, 215, 0.8);
+            overflow: hidden;
+            transition: all 0.2s;
+            animation: softAppear 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes softAppear {
+            0% { opacity: 0; transform: translateY(25px) scale(0.96);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+
+        /* 蛋糕展示区 — 更精致 “生日助手” 风格 */
+        .cake-show {
+            background: #fffbf0;
+            padding: 32px 20px 20px;
+            border-radius: 56px 56px 48px 48px;
+            text-align: center;
+            box-shadow: inset 0 1px 6px #fff8e7, 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        /* 蜡烛区完整漂亮 — 火焰完全展示 */
+        .candle-corner {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+            min-height: 190px;
+            position: relative;
+            padding-top: 55px;
+        }
+        .candle-holder {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.1s;
+        }
+        .candle-body {
+            width: 38px;
+            height: 90px;
+            background: linear-gradient(145deg, #fff2e6, #ffe1bc);
+            border-radius: 20px 20px 12px 12px;
+            box-shadow: 0 8px 0 #dcac77, 0 6px 14px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        .candle-body::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 5px;
+            width: 28px;
+            height: 12px;
+            background: #f8c48c;
+            border-radius: 40%;
+            filter: blur(2px);
+        }
+        .wick {
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 16px;
+            background: #704214;
+            border-radius: 2px;
+            z-index: 2;
+        }
+        .flame-glow {
+            position: absolute;
+            top: -42px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 34px;
+            height: 48px;
+            background: radial-gradient(ellipse at 30% 20%, #ffb85e, #ff4d00);
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: 0 0 28px 8px #ff9f4a;
+            animation: cuteFlicker 0.2s infinite alternate ease;
+            transition: all 0.2s;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .flame-glow::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -12px;
+            width: 56px;
+            height: 56px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.45), transparent);
+            filter: blur(14px);
+            border-radius: 50%;
+        }
+        @keyframes cuteFlicker {
+            0% { transform: translateX(-50%) scale(1,1); opacity: 0.95;}
+            100% { transform: translateX(-50%) scale(1.12,0.86); opacity: 1;}
+        }
+        .flame-glow.out {
+            opacity: 0 !important;
+            transform: translateX(-50%) scale(0.1) !important;
+            filter: blur(12px);
+            transition: opacity 0.2s, transform 0.25s;
+            box-shadow: none;
+        }
+
+        /* 超级可爱蛋糕 — 三层海绵质感 */
+        .cake-tower {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+        }
+        .cake-assembly {
+            position: relative;
+            width: 270px;
+        }
+        .layer-bottom {
+            background: #f9cf8c;
+            width: 100%;
+            height: 95px;
+            border-radius: 32px 32px 42px 42px;
+            box-shadow: 0 14px 0 #cf9f5e, 0 18px 24px rgba(0,0,0,0.12);
+            background-image: radial-gradient(circle at 25% 40%, rgba(255,225,160,0.6) 2%, transparent 2.5%);
+            background-size: 18px 18px;
+            position: relative;
+            overflow: visible;
+        }
+        .layer-middle {
+            position: absolute;
+            bottom: 70px;
+            left: 12%;
+            width: 76%;
+            height: 68px;
+            background: #fbddab;
+            border-radius: 32px 32px 28px 28px;
+            box-shadow: 0 10px 0 #d8a35c;
+            background-image: radial-gradient(circle at 70% 30%, rgba(255,210,130,0.7) 2%, transparent 2.5%);
+            background-size: 16px 16px;
+            z-index: 2;
+        }
+        .layer-top {
+            position: absolute;
+            bottom: 114px;
+            left: 22%;
+            width: 56%;
+            height: 55px;
+            background: #f9d6a0;
+            border-radius: 36px 36px 28px 28px;
+            box-shadow: 0 8px 0 #c2863e;
+            background-image: radial-gradient(circle at 50% 40%, #ffefc0 2%, transparent 2.5%);
+            background-size: 14px 14px;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* 奶油波浪 */
+        .cream-wave {
+            position: absolute;
+            top: -16px;
+            left: 0;
+            width: 100%;
+            height: 28px;
+            background: #fff8ec;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 18px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.02);
+        }
+        .cream-middle { top: -14px; }
+        .cream-top { top: -12px; }
+        
+        /* 装饰糖粒小世界 */
+        .sprinkle-deco {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 4;
+        }
+        .sprinkle {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #ff8a9f;
+            border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* 祝福语区域 暴富暴美暴顺利 */
+        .wish-area {
+            margin: 18px 0 12px;
+        }
+        .wish-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ff8a7a;
+            letter-spacing: 2px;
+        }
+        .wish-grid {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 12px 0 8px;
+            flex-wrap: wrap;
+        }
+        .wish-item {
+            text-align: center;
+            background: #fff3e8;
+            padding: 10px 18px;
+            border-radius: 60px;
+            box-shadow: 0 6px 0 #ffcfb0;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: #e6745a;
+        }
+        .wish-item span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: normal;
+            color: #b95f44;
+        }
+        .happy-birthday-tag {
+            background: #ffdcd2;
+            display: inline-block;
+            padding: 6px 26px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #c24f36;
+            margin: 6px 0 4px;
+            font-size: 1.1rem;
+        }
+        
+        .blow-tip {
+            background: rgba(0,0,0,0.55);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.68rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        /* 信封区域 — 轻巧温馨 */
+        .envelope-pretty {
+            padding: 8px 24px 20px;
+            background: #fffaf2;
+            border-radius: 48px 48px 48px 48px;
+        }
+        .envelope-card {
+            background: #ffe9da;
+            border-radius: 28px;
+            padding: 8px;
+            box-shadow: 0 8px 0 #dbbd9c;
+        }
+        .envelope-wrap {
+            background: #ffddbc;
+            border-radius: 22px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .envelope-front-pic {
+            background: #ffd7b0;
+            padding: 12px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .envelope-icon-big {
+            font-size: 46px;
+            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.1));
+        }
+        .letter-inside {
+            background: #fffef5;
+            padding: 0 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(12px);
+        }
+        .envelope-wrap.opened .envelope-front-pic {
+            display: none;
+        }
+        .envelope-wrap.opened .letter-inside {
+            max-height: 380px;
+            opacity: 1;
+            transform: translateY(0);
+            padding: 20px 16px;
+        }
+        .letter-inside p {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: #8b5a3e;
+            text-align: center;
+        }
+        
+        /* 底部按钮 */
+        .action-foot {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 12px 18px 20px;
+            background: #fff7ef;
+            border-top: 1px solid #ffe3cf;
+        }
+        .mini-btn {
+            background: #fff3e4;
+            border: none;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b35f3c;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: 0.05s linear;
+        }
+        .mini-btn:active { transform: scale(0.96); background: #ffe4cf; }
+        
+        footer {
+            font-size: 9px;
+            text-align: center;
+            color: #c48a65;
+            padding: 6px 0 12px;
+            background: #fff7ef;
+        }
+        
+        /* 吹气粒子 */
+        .magic-particle {
+            position: fixed;
+            background: radial-gradient(circle, #ffd699, #ffb347);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkBlow 0.6s forwards ease-out;
+            z-index: 1000;
+        }
+        @keyframes sparkBlow {
+            0% { transform: scale(0.5); opacity: 0.9; }
+            100% { transform: translate(var(--dx, 60px), var(--dy, -70px)) scale(0); opacity: 0; }
+        }
+        
+        @media (max-width: 480px) {
+            .cake-assembly { width: 240px; }
+            .layer-bottom { height: 85px; }
+            .layer-middle { bottom: 62px; height: 60px; }
+            .layer-top { bottom: 100px; height: 48px; }
+            .wish-item { padding: 6px 14px; font-size: 1.2rem; }
+            .candle-body { height: 84px; width: 34px; }
+            .flame-glow { top: -40px; width: 30px; height: 44px; }
+        }
+    </style>
+</head>
+<body>
+<div class="birthday-box">
+    <div class="cake-show">
+        <div class="candle-corner">
+            <div class="candle-holder" id="candleClick">
+                <div class="candle-body">
+                    <div class="wick"></div>
+                    <div class="flame-glow" id="flameFire"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cake-tower">
+            <div class="cake-assembly">
+                <div class="layer-bottom" id="cakeBottomLayer">
+                    <div class="cream-wave">🍰 🍬 🍰</div>
+                    <div class="sprinkle-deco" id="sprinkBottom"></div>
+                </div>
+                <div class="layer-middle" id="cakeMidLayer">
+                    <div class="cream-wave cream-middle">🍓 ✨ 🍓</div>
+                    <div class="sprinkle-deco" id="sprinkMiddle"></div>
+                </div>
+                <div class="layer-top" id="cakeTopLayer">
+                    <div class="cream-wave cream-top">🍫 🎂 🍫</div>
+                    <div class="sprinkle-deco" id="sprinkTop"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 定制祝福：暴富 暴美 暴顺利 -->
+        <div class="wish-area">
+            <div class="wish-title">✨ 新的一岁 ✨</div>
+            <div class="wish-grid">
+                <div class="wish-item">💰 暴富<br><span>财源滚滚</span></div>
+                <div class="wish-item">💄 暴美<br><span>闪闪发光</span></div>
+                <div class="wish-item">🍀 暴顺利<br><span>万事胜意</span></div>
+            </div>
+            <div class="happy-birthday-tag">🎂 生日快乐，每一天都快乐 🎂</div>
+        </div>
+        <div class="blow-tip" id="blowMessage">
+            🕯️ 点击蜡烛许愿 或 对麦克风吹气 🕯️
+        </div>
+    </div>
+
+    <!-- 信封 拆开祝福 -->
+    <div class="envelope-pretty">
+        <div class="envelope-card">
+            <div class="envelope-wrap" id="envelopeBox">
+                <div class="envelope-front-pic">
+                    <div class="envelope-icon-big">💌 ✨</div>
+                    <span style="font-weight:600; color:#b46a44;">📬 轻触拆开幸运信封 📬</span>
+                </div>
+                <div class="letter-inside">
+                    <p style="font-weight: bold; font-size:1.1rem;">🎁 致亲爱的你 🎁</p>
+                    <p>🌟 新的一岁，愿你钱包鼓鼓，烦恼空空 🌟<br>
+                    💖 美貌与智慧齐飞，生活与理想同辉 💖<br>
+                    🚀 所有计划都顺利，所有期待都实现 🚀<br>
+                    🎈 生日快乐，不只是今日，而是朝朝暮暮的欢喜 🎈</p>
+                    <p style="margin-top:12px;">—— 你的专属小幸运</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-foot">
+        <button class="mini-btn" id="changeBgBtn">🎨 换背景</button>
+        <button class="mini-btn" id="changeDecoBtn">🍬 换装饰</button>
+        <button class="mini-btn" id="musicToggleBtn">🎵 稻香 · 播放</button>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // 火焰元素
+        const flame = document.getElementById('flameFire');
+        const candleArea = document.getElementById('candleClick');
+        const blowMsg = document.getElementById('blowMessage');
+        const envelopeBox = document.getElementById('envelopeBox');
+        const changeBg = document.getElementById('changeBgBtn');
+        const changeDeco = document.getElementById('changeDecoBtn');
+        const musicBtn = document.getElementById('musicToggleBtn');
+        
+        // 糖粒层
+        const sprinkBottom = document.getElementById('sprinkBottom');
+        const sprinkMiddle = document.getElementById('sprinkMiddle');
+        const sprinkTop = document.getElementById('sprinkTop');
+        const cakeBottom = document.getElementById('cakeBottomLayer');
+        const cakeMid = document.getElementById('cakeMidLayer');
+        const cakeTop = document.getElementById('cakeTopLayer');
+        
+        let isLit = true;
+        
+        // 吹灭蜡烛 + 粒子特效
+        function extinguishCandle() {
+            if(!isLit) return;
+            isLit = false;
+            if(flame) flame.classList.add('out');
+            createSparkles();
+            blowMsg.innerHTML = '🎉 愿望已许，暴富暴美暴顺利！ 🎉';
+            blowMsg.style.background = "rgba(180, 70, 50, 0.85)";
+            setTimeout(() => {
+                if(blowMsg) blowMsg.innerHTML = '🕯️ 蜡烛吹灭，心想事成 🕯️';
+                setTimeout(() => {
+                    if(blowMsg) blowMsg.style.background = "rgba(0,0,0,0.55)";
+                }, 2000);
+            }, 1500);
+            if(mediaStream) stopMic();
+        }
+        
+        function createSparkles() {
+            const rect = candleArea.getBoundingClientRect();
+            const cx = rect.left + rect.width/2;
+            const cy = rect.top + rect.height/2 - 5;
+            for(let i=0;i<38;i++) {
+                const p = document.createElement('div');
+                p.classList.add('magic-particle');
+                const ang = Math.random() * Math.PI * 2;
+                const sp = 35 + Math.random() * 100;
+                const dx = Math.cos(ang) * sp + (Math.random() - 0.5)*40;
+                const dy = Math.sin(ang) * sp - 65;
+                p.style.left = cx + (Math.random()-0.5)*32 + 'px';
+                p.style.top = cy + (Math.random()-0.5)*28 + 'px';
+                p.style.setProperty('--dx', dx + 'px');
+                p.style.setProperty('--dy', dy + 'px');
+                p.style.width = `${6+Math.random()*9}px`;
+                p.style.height = p.style.width;
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 650);
+            }
+        }
+        
+        // 麦克风吹气检测 (完整功能)
+        let mediaStream = null, audioCtx = null, sourceNode = null, analyser = null, micActive = false, animFrame = null;
+        function initMic() {
+            if(!isLit) return;
+            if(mediaStream) return;
+            if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                console.log('[麦克风] 当前浏览器不支持麦克风');
+                blowMsg.innerHTML = '💨 点击蜡烛吹灭 (无麦克风支持) 💨';
+                return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaStream = stream;
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioCtx.createAnalyser();
+                    analyser.fftSize = 256;
+                    sourceNode = audioCtx.createMediaStreamSource(stream);
+                    sourceNode.connect(analyser);
+                    micActive = true;
+                    const dataArr = new Uint8Array(analyser.frequencyBinCount);
+                    function checkBlow() {
+                        if(!micActive || !isLit) { if(animFrame) cancelAnimationFrame(animFrame); return; }
+                        if(analyser) {
+                            analyser.getByteFrequencyData(dataArr);
+                            let total = 0;
+                            for(let v of dataArr) total += v;
+                            let avg = total / dataArr.length;
+                            if(avg > 48) {
+                                extinguishCandle();
+                                stopMic();
+                                return;
+                            }
+                        }
+                        animFrame = requestAnimationFrame(checkBlow);
+                    }
+                    if(audioCtx.state === 'suspended') audioCtx.resume().then(() => checkBlow());
+                    else checkBlow();
+                    blowMsg.innerHTML = '🎤 正在听你吹气，呼～ 🎤';
+                    setTimeout(() => { if(isLit && blowMsg) blowMsg.innerHTML = '💨 点击蜡烛 或 对麦克风吹气 💨'; }, 2800);
+                })
+                .catch(() => { blowMsg.innerHTML = '💨 点击蜡烛吹灭 (无麦克风权限) 💨'; });
+        }
+        function stopMic() {
+            if(animFrame) cancelAnimationFrame(animFrame);
+            if(mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
+            if(audioCtx) { audioCtx.close(); audioCtx = null; }
+            micActive = false;
+        }
+        
+        function handleCandleTap(e) {
+            if(e && e.cancelable) e.preventDefault();
+            console.log('[蜡烛] 点击/触摸事件触发');
+            if(isLit) { extinguishCandle(); stopMic(); }
+        }
+        candleArea.addEventListener('click', handleCandleTap);
+        candleArea.addEventListener('touchend', handleCandleTap);
+
+        let micRequestedFlag = false;
+        function tryMicOnFirstTap(e) {
+            if(!micRequestedFlag && isLit) {
+                micRequestedFlag = true;
+                initMic();
+            }
+            document.removeEventListener('click', tryMicOnFirstTap);
+            document.removeEventListener('touchstart', tryMicOnFirstTap);
+        }
+        document.addEventListener('click', tryMicOnFirstTap);
+        document.addEventListener('touchstart', tryMicOnFirstTap, {passive:true});
+        
+        // 信封
+        envelopeBox.addEventListener('click', () => {
+            envelopeBox.classList.toggle('opened');
+        });
+        
+        // 换背景 甜美色盘
+        const bgList = [
+            "linear-gradient(145deg, #fdebf7 0%, #f9cedb 100%)",
+            "linear-gradient(145deg, #ffe6f0 0%, #ffcfdf 100%)",
+            "linear-gradient(145deg, #e0f3f0 0%, #b8e1d4 100%)",
+            "linear-gradient(145deg, #ffefd6 0%, #ffddb0 100%)",
+            "linear-gradient(145deg, #e0d3ff 0%, #cbb2fe 100%)",
+            "linear-gradient(145deg, #fedbd0 0%, #fdc0b0 100%)"
+        ];
+        let bgIdx = 0;
+        changeBg.addEventListener('click', () => {
+            bgIdx = (bgIdx+1) % bgList.length;
+            document.body.style.background = bgList[bgIdx];
+        });
+        
+        // 随机装饰函数
+        function genSprinkles(container, num=26) {
+            if(!container) return;
+            container.innerHTML = '';
+            const colors = ['#ff82a8','#ffb347','#6a89cc','#fed330','#78e08f','#f6b93b','#e55039','#c44569'];
+            for(let i=0;i<num;i++) {
+                const sp = document.createElement('div');
+                sp.classList.add('sprinkle');
+                sp.style.left = Math.random() * 94 + '%';
+                sp.style.top = Math.random() * 85 + 6 + '%';
+                sp.style.background = colors[Math.floor(Math.random()*colors.length)];
+                container.appendChild(sp);
+            }
+            for(let i=0;i<5;i++) {
+                const little = document.createElement('div');
+                little.innerHTML = Math.random() > 0.6 ? '⭐' : '❤️';
+                little.style.position = 'absolute';
+                little.style.fontSize = '11px';
+                little.style.left = Math.random() * 90 + '%';
+                little.style.top = Math.random() * 80 + 10 + '%';
+                little.style.pointerEvents = 'none';
+                container.appendChild(little);
+            }
+        }
+        
+        function refreshCakeStyle() {
+            genSprinkles(sprinkBottom, 28);
+            genSprinkles(sprinkMiddle, 24);
+            genSprinkles(sprinkTop, 20);
+            const patterns = [
+                'radial-gradient(circle at 25% 40%, rgba(255,225,160,0.6) 2%, transparent 2.5%)',
+                'radial-gradient(circle at 70% 30%, #ffe2b0 2%, transparent 3%)',
+                'radial-gradient(ellipse at 30% 50%, #ffefc0 2%, transparent 3%)',
+                'repeating-linear-gradient(45deg, #ffe1b5 0px, #ffe1b5 4px, #ffd29b 4px, #ffd29b 10px)'
+            ];
+            cakeBottom.style.backgroundImage = patterns[Math.floor(Math.random()*patterns.length)];
+            cakeMid.style.backgroundImage = patterns[Math.floor(Math.random()*patterns.length)];
+            cakeTop.style.backgroundImage = patterns[Math.floor(Math.random()*patterns.length)];
+            const creams = document.querySelectorAll('.cream-wave');
+            const icons = ['🍰','🍬','🍓','✨','🍫','🎂','🌸','🍒','🧁'];
+            creams.forEach(c => {
+                let a = icons[Math.floor(Math.random()*icons.length)];
+                let b = icons[Math.floor(Math.random()*icons.length)];
+                c.innerHTML = `${a} 🎂 ${b}`;
+            });
+        }
+        changeDeco.addEventListener('click', refreshCakeStyle);
+        
+        // ---------- 音频播放 - 多源 + 本地文件选择兜底 ----------
+        let audioElem = null;
+        let isMusicOn = false;
+        let audioUnlocked = false;
+        let audioLoadFailed = false;
+        const AUDIO_SOURCES = [
+            // 源1: 网易云外链（可能随时失效）
+            'https://music.163.com/song/media/outer/url?id=185811.mp3',
+            // 源2: Pixabay 免版权音频
+            'https://cdn.pixabay.com/download/audio/2022/01/18/audio_dc2c8a6f1b.mp3?filename=jay-chou-rice-field-melody-108523.mp3',
+            // 源3: 本地文件（和此 HTML 放同一目录，命名为 daoxiang.mp3）
+            './daoxiang.mp3'
+        ];
+
+        // 隐藏的文件选择器：所有源失败时让用户自选本地 MP3
+        const audioFileInput = document.createElement('input');
+        audioFileInput.type = 'file';
+        audioFileInput.accept = 'audio/mpeg,audio/mp3';
+        audioFileInput.style.display = 'none';
+        audioFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(!file || !audioElem) return;
+            const blobUrl = URL.createObjectURL(file);
+            audioElem.src = blobUrl;
+            audioElem.load();
+            audioElem.play().then(() => {
+                musicBtn.innerHTML = '🔇 ' + file.name + ' · 暂停';
+                isMusicOn = true;
+                audioLoadFailed = false;
+            }).catch(() => {
+                alert('播放失败，请重新选择');
+            });
+        });
+        document.body.appendChild(audioFileInput);
+
+        function initAudio() {
+            if(audioElem) return;
+            audioElem = document.createElement('audio');
+            audioElem.loop = true;
+            audioElem.volume = 0.45;
+            audioElem.preload = 'auto';
+            audioElem.setAttribute('playsinline', 'true');
+            audioElem.setAttribute('webkit-playsinline', 'true');
+            audioElem.setAttribute('x5-video-player-type', 'h5');
+            audioElem.style.display = 'none';
+            // 不设置 crossOrigin，否则本地 file:// 协议下无法播放本地 mp3
+
+            let sourceIdx = 0;
+            function tryLoadSource() {
+                if(sourceIdx >= AUDIO_SOURCES.length) {
+                    console.error('[音频] 所有在线/本地源均不可用');
+                    audioLoadFailed = true;
+                    musicBtn.innerHTML = '🎵 点击选择本地音乐';
+                    return;
+                }
+                console.log('[音频] 尝试加载源 ' + sourceIdx + ': ' + AUDIO_SOURCES[sourceIdx]);
+                audioElem.src = AUDIO_SOURCES[sourceIdx];
+                audioElem.load();
+                sourceIdx++;
+            }
+
+            audioElem.addEventListener('error', function() {
+                console.error('[音频] 源 ' + (sourceIdx-1) + ' 加载失败');
+                if(sourceIdx < AUDIO_SOURCES.length) {
+                    tryLoadSource();
+                } else {
+                    console.error('[音频] 无可用音频源');
+                    audioLoadFailed = true;
+                    musicBtn.innerHTML = '🎵 点击选择本地音乐';
+                }
+            });
+
+            audioElem.addEventListener('canplay', function() {
+                console.log('[音频] 加载成功，可播放');
+                audioLoadFailed = false;
+            });
+
+            tryLoadSource();
+            document.body.appendChild(audioElem);
+        }
+
+        function unlockAudio() {
+            if(audioUnlocked) return;
+            initAudio();
+            if(!audioElem) return;
+            audioElem.play().then(() => {
+                audioElem.pause();
+                audioElem.currentTime = 0;
+                audioUnlocked = true;
+            }).catch(() => {
+                audioUnlocked = true;
+            });
+        }
+
+        function wxUnlockAudio() {
+            if(typeof WeixinJSBridge !== 'undefined') {
+                WeixinJSBridge.invoke('getNetworkType', {}, function() {
+                    unlockAudio();
+                });
+            } else {
+                document.addEventListener('WeixinJSBridgeReady', function() {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function() {
+                        unlockAudio();
+                    });
+                }, {once:true});
+            }
+        }
+
+        function toggleMusic() {
+            initAudio();
+            if(!audioElem) {
+                alert('音乐初始化失败');
+                return;
+            }
+            if(isMusicOn) {
+                audioElem.pause();
+                musicBtn.innerHTML = audioLoadFailed ? '🎵 点击选择本地音乐' : '🎵 音乐 · 播放';
+                isMusicOn = false;
+            } else {
+                if(audioLoadFailed) {
+                    audioFileInput.click();
+                    return;
+                }
+                const doPlay = () => {
+                    audioElem.play().then(() => {
+                        musicBtn.innerHTML = '🔇 音乐 · 暂停';
+                        isMusicOn = true;
+                    }).catch(() => {
+                        alert('播放失败，请检查音频源或选择本地文件');
+                    });
+                };
+                if(audioElem.readyState < 2) {
+                    audioElem.addEventListener('canplay', doPlay, {once:true});
+                    audioElem.load();
+                } else {
+                    doPlay();
+                }
+            }
+        }
+
+        musicBtn.addEventListener('click', toggleMusic);
+
+        // 首次用户交互时解锁音频上下文（解决 iOS / 微信 自动播放限制）
+        function onFirstInteraction() {
+            unlockAudio();
+            wxUnlockAudio();
+            document.removeEventListener('touchstart', onFirstInteraction);
+            document.removeEventListener('click', onFirstInteraction);
+        }
+        document.addEventListener('touchstart', onFirstInteraction, {passive:true});
+        document.addEventListener('click', onFirstInteraction);
+        
+        // 初始装饰
+        refreshCakeStyle();
+        
+        window.addEventListener('beforeunload', () => {
+            if(mediaStream) stopMic();
+            if(audioElem) audioElem.pause();
+        });
+    })();
+</script>
+</body>
+</html>
